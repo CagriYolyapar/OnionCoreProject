@@ -1,0 +1,67 @@
+﻿Identity => Sizin icin hazır yetkilendirme ve rol sisteminin Veritabanına Microsoft tarafından dahil edilmesidir...
+
+Entities
+*********
+*Microsoft.AspNetCore.Identity => Identity işlemleri icin indirdigimiz bir kütüphanedir...BUrada dikkat edin Core olmayan bir Identity Package'ini referans almamalısınız...(Identity işlemleri icin kastettigimiz Kullanıcı ekleme, login olma, signin olma,sifremi unuttum,mail gönderme )
+
+*Microsoft.Extensions.Identity.Stores => NetCore MVC'den ve EF'ten bagımsız bir katmanda Core Identity yapısı kullanılacaksa Identity kütüphanesinin yanında Stores kütüphanesinin de indirilmesi gereklidir...
+
+-----------------------------------
+
+MAP(ENTITIES katmanından referans alır...)
+****
+*Microsoft.EntityFrameworkCore => EF işlemlerinin temeli bu kütüphaneden baslar...(IEntityTypeConfiguration Interface'i de bu kütüphanededir...)
+*Microsoft.EntityFrameworkCore.SqlServer => Core'da IEntityTypeConfiguration Interface'i icerisinde SQLServer icin HasColumnName ve benzeri metotların gelebilmesi icin ihtiyacımız olan kütüphanedir...
+
+---------------------------------------
+DAL(MAP'ten referans alır dolayısıyla zincirleme olarak CORE platformunda MAP'in icindeki ENTITIES de gelecegi icin ENTITIES'ten referans almak zorunda kalmayacagız...)
+****
+*Microsoft.EntityFrameworkCore => İhtiyacı vardır ama zaten MAP'ten gelmektedir...
+
+*Microsoft.EntityFrameworkCore.SqlServer => İhtiyacı vardır ama Map'ten gelmektedir...
+
+*Microsoft.EntityFrameworkCore.Tools => Migration işlemlerini terminalden yapmak icin Tools kütüphanesine ihtiyacı vardır...
+
+*Microsoft.EntityFrameworkCore.Proxies => LazyLoading ayarlamaları yapabilmek icin..
+
+*Microsoft.AspNetCore.Identity.EntityFrameworkCore => Artık Identity kullandıgımız icin burada MyContext class'ımız DbContext sınıfından degil IdentityDbContext class'ından miras almalıdır...
+
+-------------------------------------------------
+
+COMMON
+****
+SessionExtension sınıfı icin...Dikkat edin artık burada farklı bir katmanda ve .Net Standard class library'sindesiniz...O yüzden normal şarlardaki gibi SessionExtension icin kütüphaneler otomatik gelmez...
+
+*Microsoft.AspNetCore.HTTP.Features => ISession tipini kullanmanızı sağlar...
+
+*Microsoft.AspNetCore.HTTP.Extensions => Common katmanında ISession tipinin SetString ve GetString extension metotlarına ulasabilmenizi saglar...
+
+*Newtonsoft.JSON => JSON Serialize ve Deserialize işlemleri icin indirdigimiz kütüphanemizdir...
+
+----------------------------
+
+BLL(DAL'den referans alır)
+****
+
+*Microsoft.EntityFrameworkCore => İhtiyacı vardır ama zaten DAL'ten gelmektedir...Service Injection Options ayarları yapılacaktır...
+
+*Microsoft.EntityFrameworkCore.SqlServer => İhtiyacı vardır ama DAL'ten gelmektedir... Service Inject yapılırken Options'ın UseSqlServer metodunu kullanmasını gerekir o yüzden ihtiyacı vardır...
+
+*Microsoft.AspNetCore.Identity => İhtiyacı vardır ama zincirleme referans olarak gelir...Identity servislerini inject etmek icin(Dependency Injection'a bildirmek icin ihtiyacı vardır)
+
+*System.Configuration.ConfigurationManager => Mevcut calısan projenin configuration'inina baska katmanlardan ulasabilmek icin indirmemiz gerekek kütüphanedir...
+
+---------------------
+
+UI(BLL'den  ve COMMON'dan referans alacaktır)
+****
+*Microsoft.EntityFrameworkCore (chain reference olarak gelir)
+
+*Microsoft.EntityFrameworkCore.SqlServer(chain referans olarak gelir )
+
+*Microsoft.EntityFrameworkCore.Design => Migration icin Tools kütüphanesini DAL'de ekleyerek ayrı bir katmanda terminal işlemleri yaptığımızdan dolayı o Tools'a destek verebilmesi icin UI'a bu Design kütüphanesinin indirilmesi gerekir...
+
+
+
+
+
