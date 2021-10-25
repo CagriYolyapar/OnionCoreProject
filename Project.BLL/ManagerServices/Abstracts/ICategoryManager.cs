@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.DAL.Repositories.Abstracts
+namespace Project.BLL.ManagerServices.Abstracts
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryManager:IManager<Category>
     {
         void SpecialCategoryCreation();
 
         void BaskaMetot();
+
+
+
     }
 }

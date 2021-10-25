@@ -29,6 +29,7 @@ namespace Project.DAL.Repositories.Concretes
         {
             //Sadece Asenkron olarak yaratılmıs (async marklı) metotlar icerisinde await kullanabilirsiniz...
 
+            
             IdentityResult result = await _userManager.CreateAsync(item, item.PasswordHash);
             if (result.Succeeded)
             {

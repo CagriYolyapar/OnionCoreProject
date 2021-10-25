@@ -15,5 +15,15 @@ namespace Project.DAL.Repositories.Concretes
         {
 
         }
+
+        public void BaskaMetot()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SpecialCategoryCreation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
