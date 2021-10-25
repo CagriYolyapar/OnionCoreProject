@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.ManagerServices.Abstracts
 {
-    public interface IProuductManager : IManager<Product>
+    public interface IProductManager : IManager<Product>
     {
     }
 }

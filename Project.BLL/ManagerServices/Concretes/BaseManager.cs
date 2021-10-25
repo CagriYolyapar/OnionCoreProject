@@ -19,6 +19,9 @@ namespace Project.BLL.ManagerServices.Concretes
         {
             _iRep = iRep;
         }
+
+
+      
         public virtual string Add(T item)
         {
            if(item.CreatedDate != null)

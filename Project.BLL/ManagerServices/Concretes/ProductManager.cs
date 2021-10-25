@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.ManagerServices.Concretes
 {
-    public class ProductManager:BaseManager<Product>,IProuductManager
+    public class ProductManager:BaseManager<Product>,IProductManager
     {
 
         IProductRepository _pRep;
