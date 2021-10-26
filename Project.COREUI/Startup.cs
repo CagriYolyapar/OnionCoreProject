@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Project.BLL.ServiceInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace Project.COREUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //Manual Extension yarattıgımızda kullanacagımız tiplerin icerisindeki metotları tetiklemek icin
+
+            services.AddDbContextService();
+            services.AddIdentityService();
+            services.AddRepManServices();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

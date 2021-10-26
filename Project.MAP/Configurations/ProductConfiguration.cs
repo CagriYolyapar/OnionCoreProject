@@ -15,6 +15,7 @@ namespace Project.MAP.Configurations
         {
             base.Configure(builder);
             builder.ToTable("Urunler");
+            builder.Property(x => x.UnitPrice).HasColumnType("money");
         }
     }
 }

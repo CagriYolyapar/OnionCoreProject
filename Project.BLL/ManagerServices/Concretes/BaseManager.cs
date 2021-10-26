@@ -21,10 +21,10 @@ namespace Project.BLL.ManagerServices.Concretes
         }
 
 
-      
+
         public virtual string Add(T item)
         {
-           if(item.CreatedDate != null)
+            if (item.CreatedDate != null)
             {
                 _iRep.Add(item);
                 return "Ekleme basarılı";
