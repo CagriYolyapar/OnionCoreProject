@@ -42,5 +42,25 @@ namespace Project.COREUI.Controllers
             TempData["message"] = _cMan.Add(category);
             return RedirectToAction("CategoryList");
         }
+        public IActionResult UpdateCategory(int id)
+        {
+            CategoryVM cvm = new CategoryVM()
+            {
+                Category = _cMan.Find(id)
+
+            };
+            return View(cvm);
+        }
+        [HttpPost]
+        public IActionResult UpdateCategory(Category category)
+        {
+            _cMan.Update(category);
+            return RedirectToAction("CategoryList");
+        }
+        public IActionResult DeleteCategory(int id)
+        {
+            _cMan.Delete(_cMan.Find(id));
+            return RedirectToAction("CategoryList");
+        }
     }
 }
